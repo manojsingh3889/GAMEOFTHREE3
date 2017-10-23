@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Scanner;
 
+import static com.takeaway.player.core.Const.*;
 import com.takeaway.player.core.ListeningServerSocket;
 import com.takeaway.player.core.PlayerGameSocketClient;
 
@@ -22,47 +23,47 @@ public class PlayerConsole{
 			ListeningServerSocket.init(listeningPort);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("Unable to establish server socket.\nExiting game");
+			System.out.println(SOCKET_ERROR);
 			System.exit(1);
 		}
 		
-		System.out.println("************Welcome to GAME_OF_THREE************\n\nCompete to become the Ruler of realm >>THREE<<\n");
+		System.out.println(WELCOME_NOTE);
 		
-		System.out.print("Please enter your display name:");
+		System.out.print(ENTER_NAME);
 		String uname = scan.nextLine();
 		userName = uname.trim()+"_"+listeningPort;
 		
-		System.out.print("Please select game type [(A)uto , (M)anual]:");
+		System.out.print(ENTER_GAME_TYPE);
 		String gtype = scan.nextLine();
 		gtype = gtype.trim();
-		if("M".equalsIgnoreCase(gtype) || "Manual".equalsIgnoreCase(gtype)){
-			gameType="MANUAL";
-		}else if("A".equalsIgnoreCase(gtype) || "Auto".equalsIgnoreCase(gtype)){
-			gameType="AUTO";
+		if("M".equalsIgnoreCase(gtype) || GAME_MANUAL.equalsIgnoreCase(gtype)){
+			gameType=GAME_MANUAL;
+		}else if("A".equalsIgnoreCase(gtype) || GAME_AUTO.equalsIgnoreCase(gtype)){
+			gameType=GAME_AUTO;
 		}else{
-			System.out.println("Invalid input. Exiting program.");
+			System.out.println(EXIT_INVALID_INPUT);
 			System.exit(1);
 		}
 		
-		System.out.print("Please enter (J)oin or (C)reate game :");
+		System.out.print(ENTER_COMMAND);
 		String step = PlayerConsole.scan.nextLine();
-		if("J".equalsIgnoreCase(step) || "Join".equalsIgnoreCase(step)){
+		if("J".equalsIgnoreCase(step) || JOIN.equalsIgnoreCase(step)){
 			joinGame();
-		}else if("C".equalsIgnoreCase(step) || "Create".equalsIgnoreCase(step)){
+		}else if("C".equalsIgnoreCase(step) || CREATE.equalsIgnoreCase(step)){
 			startNewGame();
 		}else{
-			System.out.println("Invalid input. Game Exiting.");
+			System.out.println(EXIT_INVALID_INPUT);
 		}
 	}
 
 	public void joinGame(){
-		System.out.println("Please enter opponent details.");
-		System.out.print("Opponent IP:");
+		System.out.println(ENTER_OPPONENT_DETAIL);
+		System.out.print(OPPONENT_IP);
 		String hostname = PlayerConsole.scan.nextLine();
-		System.out.print("Opponent port:");
+		System.out.print(OPPONENT_PORT);
 		int port = PlayerConsole.scan.nextInt();
 		PlayerConsole.scan.nextLine();
-		System.out.print("Opponent name:");
+		System.out.print(OPPONENT_NAME);
 		String opponentName = PlayerConsole.scan.nextLine();
 		System.out.println();
 		PlayerGameSocketClient client = new PlayerGameSocketClient(

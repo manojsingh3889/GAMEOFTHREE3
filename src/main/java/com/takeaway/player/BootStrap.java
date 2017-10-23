@@ -1,5 +1,7 @@
 package com.takeaway.player;
 
+import com.takeaway.player.core.Const;
+
 public class BootStrap {
 	public static void main(String[] args) {
 		
@@ -8,7 +10,7 @@ public class BootStrap {
 				PlayerConsole console = new PlayerConsole(listeningPort);
 				console.init();
 			}else{
-				System.out.println("usage: java -jar Player.jar <listening-port>");
+				System.out.println(Const.USAGE);
 			}
 		
 		

@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.takeaway.player.PlayerConsole;
-
+import static com.takeaway.player.core.Const.*;
 public class Game {
 
 	public void firstMove(PrintWriter write) throws IOException{
-		System.out.print("\tStart by entering random number :");
+		System.out.print("\t"+START_GAME);
 		int first = PlayerConsole.scan.nextInt();
 		System.out.println("\tYou Started");
 		System.out.println("\tYou:[First move =" + first + "]");
