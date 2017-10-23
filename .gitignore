@@ -1,0 +1,10 @@
+/target/
+
+.classpath
+
+.editorconfig
+
+.project
+/
+.settings/
+dependency-reduced-pom.xml
